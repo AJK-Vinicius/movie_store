@@ -1,0 +1,18 @@
+.home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding: var(--spacing-lg) 0;
+  background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main {
+    padding: var(--spacing-md) 0;
+  }
+}

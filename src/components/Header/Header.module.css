@@ -1,0 +1,234 @@
+.header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  gap: var(--spacing-md);
+  flex-wrap: nowrap;
+}
+
+.logo {
+  flex-shrink: 0;
+}
+
+.logoText {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: white;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.searchForm {
+  flex: 1;
+  max-width: 500px;
+  margin: 0 var(--spacing-lg);
+  min-width: 0;
+}
+
+.searchInputWrapper {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-fast);
+}
+
+.searchInputWrapper:focus-within {
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-base);
+  color: white;
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.searchButton {
+  border-radius: 0;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: var(--spacing-sm);
+  min-width: 44px;
+  height: 44px;
+  transition: all var(--transition-fast);
+}
+
+.searchButton:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.cartButton {
+  flex-shrink: 0;
+  white-space: nowrap;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all var(--transition-fast);
+}
+
+.cartButton:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 var(--spacing-md);
+    gap: var(--spacing-md);
+  }
+
+  .searchForm {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-sm);
+    height: 56px;
+    gap: var(--spacing-sm);
+    flex-wrap: nowrap;
+  }
+
+  .logoText {
+    font-size: var(--font-size-lg);
+  }
+
+  .searchForm {
+    margin: 0 var(--spacing-sm);
+    max-width: none;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .searchInput {
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  .searchButton {
+    min-width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+
+  .cartButton {
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    min-height: 40px;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    flex-direction: row;
+    height: auto;
+    padding: var(--spacing-sm);
+    gap: var(--spacing-xs);
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    flex: 0 0 auto;
+    order: 1;
+  }
+
+  .cartButton {
+    flex: 0 0 auto;
+    order: 2;
+    margin-left: auto;
+  }
+
+  .searchForm {
+    flex: 1 1 100%;
+    order: 3;
+    width: 100%;
+    margin: var(--spacing-xs) 0 0 0;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .searchInputWrapper {
+    height: 44px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .searchInput {
+    font-size: 16px; /* Previne zoom no iOS */
+    width: 100%;
+    min-width: 0;
+  }
+
+  .searchButton {
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: var(--spacing-xs);
+    gap: var(--spacing-xs);
+    flex-wrap: wrap;
+  }
+
+  .logoText {
+    font-size: var(--font-size-base);
+  }
+
+  .cartButton {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    min-height: 36px;
+  }
+
+  .searchForm {
+    margin: var(--spacing-xs) 0 0 0;
+  }
+
+  .searchInputWrapper {
+    height: 40px;
+  }
+
+  .searchInput {
+    font-size: 16px;
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  .searchButton {
+    min-width: 36px;
+    height: 36px;
+  }
+}

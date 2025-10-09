@@ -1,0 +1,304 @@
+.movieCard {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: var(--border-radius-xl);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.movieCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  z-index: 1;
+}
+
+.movieCard:hover::before {
+  opacity: 1;
+}
+
+.movieCard:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+  border-color: rgba(102, 126, 234, 0.2);
+}
+
+.movieCard:focus {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.posterContainer {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.posterPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.posterPlaceholder::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+}
+
+.posterIcon {
+  font-size: 4rem;
+  opacity: 0.8;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.posterOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.movieCard:hover .posterOverlay {
+  opacity: 1;
+}
+
+.addToCartButton {
+  transform: translateY(10px);
+  transition: transform var(--transition-normal);
+}
+
+.movieCard:hover .addToCartButton {
+  transform: translateY(0);
+}
+
+.movieInfo {
+  padding: var(--spacing-md);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+.movieTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-sm) 0;
+  line-height: var(--line-height-tight);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.movieMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.movieYear {
+  font-weight: var(--font-weight-medium);
+}
+
+.movieRating {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.movieOverview {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: var(--line-height-normal);
+  margin: 0 0 var(--spacing-md) 0;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.moviePrice {
+  margin-top: auto;
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--border-light);
+}
+
+.price {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  background: linear-gradient(135deg, #28a745, #20c997);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .posterContainer {
+    height: 280px;
+  }
+
+  .posterIcon {
+    font-size: 3.5rem;
+  }
+
+  .movieInfo {
+    padding: var(--spacing-sm);
+  }
+
+  .movieTitle {
+    font-size: var(--font-size-base);
+  }
+
+  .movieOverview {
+    -webkit-line-clamp: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .posterContainer {
+    height: 250px;
+  }
+
+  .posterIcon {
+    font-size: 3rem;
+  }
+
+  .movieInfo {
+    padding: var(--spacing-sm);
+  }
+
+  .movieTitle {
+    font-size: var(--font-size-base);
+  }
+
+  .movieOverview {
+    -webkit-line-clamp: 2;
+  }
+
+  .movieMeta {
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+  }
+}
+
+@media (max-width: 640px) {
+  .posterContainer {
+    height: 220px;
+  }
+
+  .posterIcon {
+    font-size: 2.5rem;
+  }
+
+  .movieInfo {
+    padding: var(--spacing-xs);
+  }
+
+  .movieTitle {
+    font-size: var(--font-size-sm);
+    -webkit-line-clamp: 2;
+  }
+
+  .movieMeta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+  }
+
+  .movieOverview {
+    -webkit-line-clamp: 2;
+    font-size: var(--font-size-xs);
+  }
+
+  .price {
+    font-size: var(--font-size-base);
+  }
+}
+
+@media (max-width: 480px) {
+  .posterContainer {
+    height: 180px;
+  }
+
+  .posterIcon {
+    font-size: 2rem;
+  }
+
+  .movieInfo {
+    padding: var(--spacing-xs);
+  }
+
+  .movieTitle {
+    font-size: var(--font-size-xs);
+    -webkit-line-clamp: 2;
+  }
+
+  .movieMeta {
+    gap: var(--spacing-xs);
+  }
+
+  .movieYear,
+  .movieRating {
+    font-size: var(--font-size-xs);
+  }
+
+  .movieOverview {
+    -webkit-line-clamp: 1;
+    font-size: var(--font-size-xs);
+  }
+
+  .price {
+    font-size: var(--font-size-sm);
+  }
+
+  .addToCartButton {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs);
+    min-height: 32px;
+  }
+}
