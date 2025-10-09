@@ -38,9 +38,18 @@ const MovieCard = ({
     >
       {/* Movie Poster */}
       <div className={styles.posterContainer}>
-        <div className={styles.posterPlaceholder} role="img" aria-label="Poster do filme">
-          <span className={styles.posterIcon} aria-hidden="true">🎬</span>
-        </div>
+        {movie?.posterUrl ? (
+          <img 
+            src={movie.posterUrl} 
+            alt={`Poster do filme ${movie.title}`}
+            className={styles.posterImage}
+            loading="lazy"
+          />
+        ) : (
+          <div className={styles.posterPlaceholder} role="img" aria-label="Poster do filme">
+            <span className={styles.posterIcon} aria-hidden="true">🎬</span>
+          </div>
+        )}
         <div className={styles.posterOverlay}>
           <Button 
             variant="primary" 
@@ -62,20 +71,22 @@ const MovieCard = ({
         </h3>
         
         <div className={styles.movieMeta} role="group" aria-label="Informações do filme">
-          <span className={styles.movieYear} aria-label={`Ano de lançamento: ${movie?.release_date ? new Date(movie.release_date).getFullYear() : '2024'}`}>
-            {movie?.release_date ? new Date(movie.release_date).getFullYear() : '2024'}
+          <span className={styles.movieYear} aria-label={`Ano de lançamento: ${movie?.year || 'N/A'}`}>
+            {movie?.year || 'N/A'}
           </span>
-          <span className={styles.movieRating} aria-label={`Avaliação: ${movie?.vote_average?.toFixed(1) || '8.5'} estrelas`}>
-            <span aria-hidden="true">⭐</span> {movie?.vote_average?.toFixed(1) || '8.5'}
+          <span className={styles.movieRating} aria-label={`Avaliação: ${movie?.rating || '0.0'} estrelas`}>
+            <span aria-hidden="true">⭐</span> {movie?.rating || '0.0'}
           </span>
         </div>
 
         <p className={styles.movieOverview}>
-          {movie?.overview || 'Descrição do filme será exibida aqui. Esta é uma descrição de exemplo para demonstrar o layout do card.'}
+          {movie?.overview || 'Descrição não disponível.'}
         </p>
 
         <div className={styles.moviePrice}>
-          <span className={styles.price} aria-label="Preço: R$ 29,90">R$ 29,90</span>
+          <span className={styles.price} aria-label={`Preço: ${movie?.formattedPrice || 'R$ 29,90'}`}>
+            {movie?.formattedPrice || 'R$ 29,90'}
+          </span>
         </div>
       </div>
     </article>

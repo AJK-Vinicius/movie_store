@@ -1,10 +1,10 @@
 .movieCard {
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-  border-radius: var(--border-radius-xl);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(102, 126, 234, 0.1);
+  background: var(--bg-card);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-light);
   overflow: hidden;
-  transition: all var(--transition-normal);
+  transition: all var(--transition-fast);
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -12,27 +12,10 @@
   position: relative;
 }
 
-.movieCard::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
-  opacity: 0;
-  transition: opacity var(--transition-normal);
-  z-index: 1;
-}
-
-.movieCard:hover::before {
-  opacity: 1;
-}
-
 .movieCard:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
-  border-color: rgba(102, 126, 234, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: var(--border-medium);
 }
 
 .movieCard:focus {
@@ -43,9 +26,20 @@
 .posterContainer {
   position: relative;
   width: 100%;
-  height: 300px;
+  height: 240px;
   overflow: hidden;
   z-index: 2;
+}
+
+.posterImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-fast);
+}
+
+.movieCard:hover .posterImage {
+  transform: scale(1.02);
 }
 
 .posterPlaceholder {
@@ -84,12 +78,12 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity var(--transition-normal);
+  transition: opacity var(--transition-fast);
 }
 
 .movieCard:hover .posterOverlay {
@@ -97,8 +91,8 @@
 }
 
 .addToCartButton {
-  transform: translateY(10px);
-  transition: transform var(--transition-normal);
+  transform: translateY(8px);
+  transition: transform var(--transition-fast);
 }
 
 .movieCard:hover .addToCartButton {
@@ -106,129 +100,75 @@
 }
 
 .movieInfo {
-  padding: var(--spacing-md);
+  padding: 12px;
   flex: 1;
   display: flex;
   flex-direction: column;
   position: relative;
   z-index: 2;
+  gap: 8px;
 }
 
 .movieTitle {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-bold);
+  font-size: 14px;
+  font-weight: 600;
   color: var(--text-primary);
-  margin: 0 0 var(--spacing-sm) 0;
-  line-height: var(--line-height-tight);
+  margin: 0;
+  line-height: 1.3;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .movieMeta {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-sm);
-  font-size: var(--font-size-sm);
+  justify-content: space-between;
+  font-size: 11px;
   color: var(--text-secondary);
+  padding: 6px 0;
+  border-bottom: 1px solid #f1f5f9;
 }
 
 .movieYear {
-  font-weight: var(--font-weight-medium);
+  font-weight: 500;
 }
 
 .movieRating {
   display: flex;
   align-items: center;
-  gap: var(--spacing-xs);
+  gap: 4px;
 }
 
 .movieOverview {
-  font-size: var(--font-size-sm);
-  color: var(--text-secondary);
-  line-height: var(--line-height-normal);
-  margin: 0 0 var(--spacing-md) 0;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  line-height: 1.4;
+  margin: 0;
   flex: 1;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 .moviePrice {
   margin-top: auto;
-  padding-top: var(--spacing-sm);
-  border-top: 1px solid var(--border-light);
+  padding-top: 8px;
+  border-top: 1px solid #f1f5f9;
 }
 
 .price {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-bold);
-  background: linear-gradient(135deg, #28a745, #20c997);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-success);
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
   .posterContainer {
-    height: 280px;
-  }
-
-  .posterIcon {
-    font-size: 3.5rem;
-  }
-
-  .movieInfo {
-    padding: var(--spacing-sm);
-  }
-
-  .movieTitle {
-    font-size: var(--font-size-base);
-  }
-
-  .movieOverview {
-    -webkit-line-clamp: 3;
-  }
-}
-
-@media (max-width: 768px) {
-  .posterContainer {
-    height: 250px;
-  }
-
-  .posterIcon {
-    font-size: 3rem;
-  }
-
-  .movieInfo {
-    padding: var(--spacing-sm);
-  }
-
-  .movieTitle {
-    font-size: var(--font-size-base);
-  }
-
-  .movieOverview {
-    -webkit-line-clamp: 2;
-  }
-
-  .movieMeta {
-    flex-wrap: wrap;
-    gap: var(--spacing-xs);
-  }
-}
-
-@media (max-width: 640px) {
-  .posterContainer {
-    height: 220px;
+    height: 200px;
   }
 
   .posterIcon {
@@ -236,31 +176,30 @@
   }
 
   .movieInfo {
-    padding: var(--spacing-xs);
+    padding: 10px;
+    gap: 6px;
   }
 
   .movieTitle {
-    font-size: var(--font-size-sm);
-    -webkit-line-clamp: 2;
+    font-size: 13px;
   }
 
   .movieMeta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-xs);
+    font-size: 10px;
+    padding: 4px 0;
   }
 
   .movieOverview {
+    font-size: 10px;
     -webkit-line-clamp: 2;
-    font-size: var(--font-size-xs);
   }
 
   .price {
-    font-size: var(--font-size-base);
+    font-size: 12px;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .posterContainer {
     height: 180px;
   }
@@ -270,35 +209,106 @@
   }
 
   .movieInfo {
-    padding: var(--spacing-xs);
+    padding: 8px;
+    gap: 6px;
   }
 
   .movieTitle {
-    font-size: var(--font-size-xs);
+    font-size: 12px;
+  }
+
+  .movieMeta {
+    font-size: 10px;
+    padding: 4px 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .movieOverview {
+    font-size: 10px;
+    -webkit-line-clamp: 2;
+  }
+
+  .price {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 640px) {
+  .posterContainer {
+    height: 160px;
+  }
+
+  .posterIcon {
+    font-size: 1.5rem;
+  }
+
+  .movieInfo {
+    padding: 8px;
+    gap: 4px;
+  }
+
+  .movieTitle {
+    font-size: 11px;
     -webkit-line-clamp: 2;
   }
 
   .movieMeta {
-    gap: var(--spacing-xs);
-  }
-
-  .movieYear,
-  .movieRating {
-    font-size: var(--font-size-xs);
+    font-size: 9px;
+    padding: 3px 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
   }
 
   .movieOverview {
     -webkit-line-clamp: 1;
-    font-size: var(--font-size-xs);
+    font-size: 9px;
   }
 
   .price {
-    font-size: var(--font-size-sm);
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .posterContainer {
+    height: 140px;
+  }
+
+  .posterIcon {
+    font-size: 1.2rem;
+  }
+
+  .movieInfo {
+    padding: 6px;
+    gap: 4px;
+  }
+
+  .movieTitle {
+    font-size: 10px;
+    -webkit-line-clamp: 2;
+  }
+
+  .movieMeta {
+    font-size: 8px;
+    padding: 2px 0;
+    gap: 1px;
+  }
+
+  .movieOverview {
+    -webkit-line-clamp: 1;
+    font-size: 8px;
+  }
+
+  .price {
+    font-size: 9px;
   }
 
   .addToCartButton {
-    font-size: var(--font-size-xs);
-    padding: var(--spacing-xs);
-    min-height: 32px;
+    font-size: 8px;
+    padding: 4px 6px;
+    min-height: 24px;
   }
 }

@@ -2,15 +2,14 @@ import { useState } from 'react';
 import styles from './Header.module.css';
 import Button from '../Button/Button';
 
-const Header = () => {
+const Header = ({ onSearch }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      // TODO: Implementar busca de filmes
-      console.log('Buscar:', searchQuery);
+    if (searchQuery.trim() && onSearch) {
+      onSearch(searchQuery.trim());
     }
   };
 
